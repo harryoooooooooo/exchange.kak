@@ -38,8 +38,8 @@ exchange [clear]: Exchange the contents of two selections.
     if point_greater ${cur[0]} ${cur[1]} ${tar[2]} ${tar[3]} ||
        point_greater ${tar[0]} ${tar[1]} ${cur[2]} ${cur[3]}; then
         printf 'exchange clear\n'
-        printf 'execute-keys %%{%s}\n' \
-            " y<c-s>:select ${target}<ret>pd<c-o>R"
+        printf 'execute-keys -save-regs %%{"a} %%{%s}\n' \
+            ",\"ay<c-s>:select ${target}<ret>y\"aR<c-o>R"
     else
         printf 'fail Selections overlap\n'
     fi
